@@ -1,13 +1,19 @@
+def isGradle7 = gradle.gradleVersion.startsWith("7")
+if (isGradle7) {
+    println("javaVersion:${org.gradle.internal.jvm.Jvm.current().javaVersion}")
+    apply from:"./build_AGP7.gradle"
+    return
+}
 
+/*****以下适配Gradle6+*****/
 buildscript {
-    ext.kotlin_version = "1.4.10"
     repositories {
         mavenCentral()
     }
     dependencies {
 // 移除这几个依赖声明
-//        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.10'
-//        classpath 'com.android.tools.build:gradle:4.0.2'
+//        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$KT_VERSION"
+//        classpath "com.android.tools.build:gradle:$AGP_VERSION"
     }
 }
 
